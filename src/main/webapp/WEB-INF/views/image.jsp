@@ -4,6 +4,7 @@
 <%@ page session="false" %>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>Person Page</title>
 	<style type="text/css">
 		.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
@@ -14,14 +15,14 @@
 </head>
 <body>
 <h1>
-	Add a Person
+	Add a Image
 </h1>
 
-<c:url var="addAction" value="/person/add" ></c:url>
+<c:url var="addAction"  value="/image/add"></c:url>
 
-<form:form action="${addAction}" commandName="person">
+<form:form action="${addAction}" commandName="image">
 <table>
-	<c:if test="${!empty person.name}">
+	<c:if test="${!empty image.fileName}">
 	<tr>
 		<td>
 			<form:label path="id">
@@ -36,57 +37,68 @@
 	</c:if>
 	<tr>
 		<td>
-			<form:label path="name">
-				<spring:message text="Name"/>
+			<form:label path="fileName">
+				<spring:message text="Title"/>
 			</form:label>
 		</td>
 		<td>
-			<form:input path="name" />
+			<form:input path="fileName" />
 		</td> 
 	</tr>
 	<tr>
 		<td>
-			<form:label path="country">
-				<spring:message text="Country"/>
+			<form:label path="fileDescription">
+				<spring:message text="Opis"/>
 			</form:label>
 		</td>
 		<td>
-			<form:input path="country" />
-		</td>
+			<form:input path="fileDescription" />
+		</td> 
 	</tr>
 	<tr>
+		<form:label path="fileDescription">
+         <td>
+         
+         <input type="file" name="file_data" size="50"/>
+        
+         </td>
+         </form:label>
+     </tr>
+     	<tr>
 		<td colspan="2">
-			<c:if test="${!empty person.name}">
+			<c:if test="${!empty image.fileName}">
 				<input type="submit"
-					value="<spring:message text="Edit Person"/>" />
+					value="<spring:message text="Edit Image"/>" />
 			</c:if>
-			<c:if test="${empty person.name}">
+			<c:if test="${empty image.fileName}">
 				<input type="submit"
-					value="<spring:message text="Add Person"/>" />
+					value="<spring:message text="Add Image"/>" />
 			</c:if>
 		</td>
 	</tr>
-</table>	
+</table>
 </form:form>
 <br>
-<h3>Persons List</h3>
-<c:if test="${!empty listPersons}">
-	<table class="tg">
+<h3>Images list</h3>
+<c:if test="${!empty listImages}">
+	<table class=tg>
 	<tr>
-		<th width="80">Person ID</th>
-		<th width="120">Person Name</th>
-		<th width="120">Person Country</th>
+		<th width="80">Image ID</th>
+		<th width="120">Image Name</th>
+		<th width="120">Image Description</th>
+		<th width ="80">Image Data</th>
 		<th width="60">Edit</th>
 		<th width="60">Delete</th>
 	</tr>
-	<c:forEach items="${listPersons}" var="person">
-		<tr>
-			<td>${person.id}</td>
-			<td>${person.name}</td>
-			<td>${person.country}</td>
-			<td><a href="<c:url value='/edit/person/${person.id}' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/person/${person.id}' />" >Delete</a></td>
-		</tr>
+	<c:forEach items="${listImages}" var="image">
+	<tr>
+		<td>${image.id}</td>
+		<td>${image.fileName}</td>
+		<td>${image.fileDescription}</td>
+		<td>${image.fileData}</td>
+		<td><a href="<c:url value='/edit/${image.id}' />" >Edit</a></td>
+		<td><a href="<c:url value='/remove/image/${image.id}' />" >Delete</a></td>
+	</tr>	
 	</c:forEach>
 	</table>
 </c:if>

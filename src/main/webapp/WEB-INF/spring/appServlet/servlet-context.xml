@@ -15,7 +15,8 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/resources/**" location="/resources/**" />
+
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -30,8 +31,8 @@
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<beans:property name="url"
 			value="jdbc:mysql://localhost:3306/TestDB" />
-		<beans:property name="username" value="" />
-		<beans:property name="password" value="" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="admin" />
 	</beans:bean>
 
 	<!-- Hibernate 4 SessionFactory Bean definition -->
@@ -41,12 +42,12 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>model.Person</beans:value>
+				<beans:value>model.Image</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
 			<beans:props>
-				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
-				</beans:prop>
+				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</beans:prop>
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
 			</beans:props>
 		</beans:property>
@@ -58,6 +59,12 @@
 	<beans:bean id="personService" class="service.PersonServiceImpl">
 		<beans:property name="personDAO" ref="personDAO"></beans:property>
 	</beans:bean>
+	<beans:bean id="imageService" class="service.ImageServiceImpl">
+		<beans:property name="imageDAO" ref="imageDAO"></beans:property>
+	</beans:bean>
+	<beans:bean id="imageDAO" class="dao.ImageDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
 	<context:component-scan base-package="controllers" />
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
@@ -65,5 +72,5 @@
 	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-
+	
 </beans:beans>

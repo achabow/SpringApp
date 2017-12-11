@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import model.Person;
 import service.PersonService;
 
@@ -45,7 +46,7 @@ public class PersonController {
 		return "redirect:/persons";
 	}
 	
-	@RequestMapping(value= "remove/{id}")
+	@RequestMapping(value= "remove/person/{id}")
 	public String removePerson(@PathVariable("id") int id){
 		this.personService.removePerson(id);
 		return "redirect:/persons";
