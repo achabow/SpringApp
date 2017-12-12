@@ -14,6 +14,7 @@
 	</style>
 </head>
 <body>
+<p><a href="index">home</a></p>
 <h1>
 	Add a Image
 </h1>
@@ -56,19 +57,20 @@
 		</td> 
 	</tr>
 	<tr>
-		<form:label path="fileDescription">
+		<form:label path="fileData">
          <td>
-         
-         <input type="file" name="file_data" size="50"/>
-        
+         <input type="file" name="filedata" size="50"/>
+        </form:label>
          </td>
-         </form:label>
+         <td>
+         <form:input path="fileData" type="file"/>
+         </td>
      </tr>
      	<tr>
 		<td colspan="2">
 			<c:if test="${!empty image.fileName}">
 				<input type="submit"
-					value="<spring:message text="Edit Image"/>" />
+					value="<spring:message text="Save"/>" />
 			</c:if>
 			<c:if test="${empty image.fileName}">
 				<input type="submit"
@@ -96,7 +98,7 @@
 		<td>${image.fileName}</td>
 		<td>${image.fileDescription}</td>
 		<td>${image.fileData}</td>
-		<td><a href="<c:url value='/edit/${image.id}' />" >Edit</a></td>
+		<td><a href="<c:url value='/edit/image/${image.id}' />" >Edit</a></td>
 		<td><a href="<c:url value='/remove/image/${image.id}' />" >Delete</a></td>
 	</tr>	
 	</c:forEach>

@@ -52,6 +52,7 @@ public class PersonController {
 		return "redirect:/persons";
 	}
 	
+	@RequestMapping(value= "edit/person/{id}")
 	public String editPerson(@PathVariable("id") int id, Model model){
 		model.addAttribute("person", this.personService.getPersonById(id));
 		model.addAttribute("listPersons", this.personService.listPersons());

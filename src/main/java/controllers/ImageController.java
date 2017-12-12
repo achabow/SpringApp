@@ -48,6 +48,7 @@ public class ImageController {
 		return "redirect:/images";
 	}
 	
+	@RequestMapping(value= "edit/image/{image_id}")
 	public String editImage(@PathVariable("image_id") int id, Model model){
 		model.addAttribute("image", this.imageService.getImageById(id));
 		model.addAttribute("listimage", this.imageService.listImages());
