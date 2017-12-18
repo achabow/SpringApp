@@ -14,10 +14,11 @@
 	</style>
 </head>
 <body>
-<p><a href="index">home</a></p>
+<h3><a href="persons">PERSON</a></h3>
 <h1>
 	Add a Image
 </h1>
+
 
 <c:url var="addAction"  value="/image/add"></c:url>
 
@@ -59,7 +60,7 @@
 	<tr>
 		<form:label path="fileData">
          <td>
-         <input type="file" name="filedata" size="50"/>
+         <spring:message text="Image"/>
         </form:label>
          </td>
          <td>

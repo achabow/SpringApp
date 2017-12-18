@@ -13,9 +13,11 @@
 	</style>
 </head>
 <body>
+<h3><a href="images">IMAGE</a></h3>
 <h1>
 	Add a Person
 </h1>
+
 
 <c:url var="addAction" value="/person/add" ></c:url>
 
